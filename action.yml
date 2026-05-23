@@ -1,9 +1,9 @@
-name: 'CodeFox - AI-Powered Pull Request Reviewer'
-description: 'CodeFox - AI-Powered Pull Request Reviewer. Stop shipping slop. Start shipping quality.'
+name: 'PRISM AI - Engineering Intelligence'
+description: 'PRISM AI - AI-Powered Engineering Intelligence Platform. Intelligent code reviews, security analysis, and architectural insights.'
 branding:
-  icon: 'git-merge'
-  color: 'orange'
-author: 'CodeFox'
+  icon: 'zap'
+  color: 'cyan'
+author: 'PRISM AI Team'
 inputs:
   debug:
     required: false

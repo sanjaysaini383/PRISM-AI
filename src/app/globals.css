@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply m-0 p-0 box-border;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(135deg, #050816 0%, #0f1728 100%);
+  background-attachment: fixed;
+}
+
+/* Glassmorphism */
+.glass {
+  @apply backdrop-blur-xl bg-white/[0.05] border border-white/10;
+}
+
+.glass-hover {
+  @apply glass hover:bg-white/[0.08] transition-all duration-300;
+}
+
+/* Glow effects */
+.glow-cyan {
+  @apply shadow-lg shadow-cyan-500/20;
+}
+
+.glow-blue {
+  @apply shadow-lg shadow-blue-500/20;
+}
+
+.glow-purple {
+  @apply shadow-lg shadow-purple-500/20;
+}
+
+/* Animated borders */
+@keyframes borderPulse {
+  0%, 100% {
+    border-color: rgba(0, 217, 255, 0.3);
+  }
+  50% {
+    border-color: rgba(0, 217, 255, 0.8);
+  }
+}
+
+.border-glow {
+  animation: borderPulse 2s ease-in-out infinite;
+}
+
+/* Smooth gradient text */
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, #00d9ff 0%, #0099cc 50%, #7c3aed 100%);
+}
+
+/* Code block styling */
+code {
+  @apply font-mono text-sm;
+}
+
+pre {
+  @apply bg-white/5 border border-white/10 rounded-lg p-4 overflow-x-auto;
+}
+
+/* Smooth transitions */
+a {
+  @apply transition-colors duration-300;
+}
+
+button {
+  @apply transition-all duration-300;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-white/5;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/20 rounded hover:bg-white/30;
+}
