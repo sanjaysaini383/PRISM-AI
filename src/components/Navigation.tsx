@@ -28,11 +28,12 @@ export function Navigation({ isScrolled }: NavigationProps) {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
           <a href="#features" className="text-gray-300 hover:text-white transition">Features</a>
-          <a href="#demo" className="text-gray-300 hover:text-white transition">Demo</a>
-          <a href="#pricing" className="text-gray-300 hover:text-white transition">Pricing</a>
-          <button className="glass px-6 py-2 rounded-lg hover:bg-white/10 font-semibold">
-            Sign In
-          </button>
+          <a href="/dashboard" className="text-gray-300 hover:text-white transition">Dashboard</a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition">GitHub</a>
+          <a href="#docs" className="text-gray-300 hover:text-white transition">Docs</a>
+          <a href="/dashboard" className="px-6 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold transition-all duration-300 shadow-lg shadow-purple-500/20">
+            Launch App
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -56,11 +57,12 @@ export function Navigation({ isScrolled }: NavigationProps) {
         >
           <div className="space-y-4">
             <a href="#features" className="block text-gray-300 hover:text-white transition">Features</a>
-            <a href="#demo" className="block text-gray-300 hover:text-white transition">Demo</a>
-            <a href="#pricing" className="block text-gray-300 hover:text-white transition">Pricing</a>
-            <button className="w-full glass px-6 py-2 rounded-lg hover:bg-white/10 font-semibold">
-              Sign In
-            </button>
+            <a href="/dashboard" className="block text-gray-300 hover:text-white transition">Dashboard</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="block text-gray-300 hover:text-white transition">GitHub</a>
+            <a href="#docs" className="block text-gray-300 hover:text-white transition">Docs</a>
+            <a href="/dashboard" className="block w-full px-6 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-violet-600 text-white font-semibold text-center transition-all duration-300">
+              Launch App
+            </a>
           </div>
         </motion.div>
       )}

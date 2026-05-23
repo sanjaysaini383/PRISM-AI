@@ -28,7 +28,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
         <button className="glass px-4 py-2 rounded-lg hover:bg-white/10 text-sm">
           🔔
         </button>
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 cursor-pointer hover:opacity-80 transition" />
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-violet-500 cursor-pointer hover:opacity-80 transition" />
       </div>
     </motion.div>
   )

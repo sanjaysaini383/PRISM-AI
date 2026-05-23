@@ -21,12 +21,12 @@ export function CTASection() {
           </p>
           
           <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <button className="glass px-8 py-4 rounded-lg bg-gradient-to-r from-cyan-500/30 to-blue-500/30 hover:from-cyan-500/40 hover:to-blue-500/40 font-semibold">
+            <motion.button whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} className="px-8 py-4 rounded-lg bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold transition-all duration-300 shadow-lg shadow-purple-500/25">
               Start Free Trial
-            </button>
-            <button className="glass px-8 py-4 rounded-lg hover:bg-white/10 font-semibold">
+            </motion.button>
+            <motion.button whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} className="glass px-8 py-4 rounded-lg font-semibold transition-all duration-300">
               Schedule Demo
-            </button>
+            </motion.button>
           </div>
 
           <p className="text-sm text-gray-400 mt-6">

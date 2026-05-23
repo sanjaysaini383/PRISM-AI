@@ -93,7 +93,7 @@ const users = await db.users.findAll({
               onClick={() => setActiveTab(key)}
               className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 ${
                 activeTab === key
-                  ? 'glass bg-gradient-to-r from-cyan-500/30 to-blue-500/30 text-prism-accent'
+                  ? 'glass bg-gradient-to-r from-purple-500/30 to-violet-500/30 text-purple-400'
                   : 'glass text-gray-300 hover:text-white'
               }`}
             >

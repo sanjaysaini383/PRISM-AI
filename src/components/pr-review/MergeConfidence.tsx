@@ -3,8 +3,29 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
+const ANIMATION_DURATION = 20
+
 interface MergeConfidenceProps {
   score: number
+}
+
+interface MetricItem {
+  label: string
+  value: number
+  color: string
+}
+
+const metrics: MetricItem[] = [
+  { label: 'Code Quality', value: 92, color: 'from-purple-500 to-violet-500' },
+  { label: 'Security', value: 85, color: 'from-green-500 to-emerald-500' },
+  { label: 'Performance', value: 80, color: 'from-orange-500 to-amber-500' },
+]
+
+const getScoreColor = (score: number): string => {
+  if (score >= 90) return '#10b981'
+  if (score >= 70) return '#a855f7'
+  if (score >= 50) return '#f97316'
+  return '#ef4444'
 }
 
 export function MergeConfidence({ score }: MergeConfidenceProps) {
@@ -20,101 +41,102 @@ export function MergeConfidence({ score }: MergeConfidenceProps) {
       } else {
         setDisplayScore(Math.round(current))
       }
-    }, 20)
+    }, ANIMATION_DURATION)
     return () => clearInterval(interval)
   }, [score])
 
-  const getColor = (s: number) => {
-    if (s >= 90) return 'from-emerald-500 to-green-500'
-    if (s >= 70) return 'from-blue-500 to-cyan-500'
-    if (s >= 50) return 'from-amber-500 to-orange-500'
-    return 'from-red-500 to-red-600'
-  }
+  const circumference = 314
+  const progress = (displayScore / 100) * circumference
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="glass rounded-xl p-6"
+      className="glass p-6"
     >
-      <h3 className="text-lg font-semibold mb-6">Merge Confidence</h3>
+      <h3 className="text-lg font-semibold mb-8">Merge Confidence</h3>
 
       {/* Circular Progress */}
-      <div className="flex justify-center mb-6">
-        <div className="relative w-32 h-32">
-          <svg className="w-full h-full" viewBox="0 0 120 120">
+      <div className="flex justify-center mb-8">
+        <div className="relative w-40 h-40">
+          <svg className="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
             {/* Background circle */}
-            <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="4" />
-            
+            <circle
+              cx="60"
+              cy="60"
+              r="50"
+              fill="none"
+              stroke="rgba(255,255,255,0.08)"
+              strokeWidth="3"
+            />
+
             {/* Progress circle */}
             <circle
               cx="60"
               cy="60"
               r="50"
               fill="none"
-              stroke="url(#gradient)"
-              strokeWidth="4"
-              strokeDasharray={`${(displayScore / 100) * 314} 314`}
+              stroke={getScoreColor(displayScore)}
+              strokeWidth="3"
+              strokeDasharray={`${progress} ${circumference}`}
               strokeLinecap="round"
-              style={{ transition: 'stroke-dasharray 0.5s ease' }}
+              style={{ transition: 'stroke-dasharray 0.3s ease, stroke 0.3s ease' }}
             />
-            
-            {/* Gradient */}
-            <defs>
-              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00d9ff" />
-                <stop offset="100%" stopColor="#0099cc" />
-              </linearGradient>
-            </defs>
           </svg>
 
-          {/* Center text */}
+          {/* Center content */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              <div className="text-3xl font-bold text-prism-accent">{displayScore}%</div>
-              <div className="text-xs text-gray-400">Ready to Merge</div>
+              <motion.div
+                key={displayScore}
+                initial={{ scale: 1.1, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.2 }}
+                className="text-4xl font-bold"
+                style={{ color: getScoreColor(displayScore) }}
+              >
+                {displayScore}%
+              </motion.div>
+              <div className="text-xs text-gray-500 mt-2">Ready to Merge</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Breakdown */}
-      <div className="space-y-3">
-        <div>
-          <div className="flex justify-between text-sm mb-1">
-            <span className="text-gray-400">Code Quality</span>
-            <span className="text-prism-accent font-semibold">92%</span>
-          </div>
-          <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-            <div className="h-full w-[92%] bg-gradient-to-r from-cyan-500 to-blue-500" />
-          </div>
-        </div>
-
-        <div>
-          <div className="flex justify-between text-sm mb-1">
-            <span className="text-gray-400">Security</span>
-            <span className="text-prism-accent font-semibold">85%</span>
-          </div>
-          <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-            <div className="h-full w-[85%] bg-gradient-to-r from-green-500 to-emerald-500" />
-          </div>
-        </div>
-
-        <div>
-          <div className="flex justify-between text-sm mb-1">
-            <span className="text-gray-400">Performance</span>
-            <span className="text-prism-accent font-semibold">80%</span>
-          </div>
-          <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-            <div className="h-full w-[80%] bg-gradient-to-r from-purple-500 to-blue-500" />
-          </div>
-        </div>
+      {/* Metrics Breakdown */}
+      <div className="space-y-4">
+        {metrics.map((metric) => (
+          <motion.div
+            key={metric.label}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm text-gray-400">{metric.label}</span>
+              <span className="text-sm font-semibold text-purple-400">{metric.value}%</span>
+            </div>
+            <div className="h-2 bg-white/8 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${metric.value}%` }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                className={`h-full bg-gradient-to-r ${metric.color} rounded-full`}
+              />
+            </div>
+          </motion.div>
+        ))}
       </div>
 
-      <button className="w-full mt-6 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 text-prism-accent font-semibold transition">
+      {/* Action Button */}
+      <motion.button
+        whileHover={{ scale: 1.02, y: -2 }}
+        whileTap={{ scale: 0.98 }}
+        className="w-full mt-8 px-4 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold transition-all duration-300 shadow-lg shadow-purple-500/20"
+      >
         ✓ Approve & Merge
-      </button>
+      </motion.button>
     </motion.div>
   )
 }

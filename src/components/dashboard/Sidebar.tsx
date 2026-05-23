@@ -40,7 +40,7 @@ export function Sidebar({ open, activeTab, setActiveTab }: SidebarProps) {
               onClick={() => setActiveTab(item.id)}
               className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
                 activeTab === item.id
-                  ? 'glass bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-prism-accent'
+                  ? 'glass bg-gradient-to-r from-purple-500/20 to-violet-500/20 text-purple-400'
                   : 'text-gray-300 hover:text-white hover:bg-white/5'
               }`}
             >
@@ -53,7 +53,7 @@ export function Sidebar({ open, activeTab, setActiveTab }: SidebarProps) {
         {/* User Profile */}
         <div className="glass rounded-lg p-4 border-t border-white/10 pt-4 mt-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500" />
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-violet-500" />
             <div>
               <p className="text-sm font-semibold">Dev Team</p>
               <p className="text-xs text-gray-400">Premium Plan</p>

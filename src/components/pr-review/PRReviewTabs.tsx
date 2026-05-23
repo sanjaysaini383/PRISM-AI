@@ -27,7 +27,7 @@ export function PRReviewTabs({ activeTab, setActiveTab }: PRReviewTabsProps) {
             onClick={() => setActiveTab(tab.id)}
             className={`px-4 py-2 rounded-lg whitespace-nowrap transition-all duration-300 ${
               activeTab === tab.id
-                ? 'glass bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-prism-accent'
+                ? 'glass bg-gradient-to-r from-purple-500/20 to-violet-500/20 text-purple-400'
                 : 'text-gray-300 hover:text-white hover:bg-white/5'
             }`}
           >

@@ -98,13 +98,15 @@ export function AIAnalysisPanel({ isAnalyzing, setIsAnalyzing }: AIAnalysisPanel
       </div>
 
       {/* Action Button */}
-      <button
+      <motion.button
         onClick={() => setIsAnalyzing(true)}
         disabled={isAnalyzing}
-        className="w-full px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500/20 to-blue-500/20 hover:from-purple-500/30 hover:to-blue-500/30 text-purple-400 font-semibold transition disabled:opacity-50"
+        whileHover={{ scale: isAnalyzing ? 1 : 1.02 }}
+        whileTap={{ scale: isAnalyzing ? 1 : 0.98 }}
+        className="w-full px-4 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold transition-all duration-300 disabled:opacity-50 shadow-lg shadow-purple-500/20"
       >
         {isAnalyzing ? 'Analyzing...' : 'Run Full Analysis'}
-      </button>
+      </motion.button>
     </motion.div>
   )
 }

@@ -13,13 +13,13 @@ const features = [
     title: 'Architecture Risk Detection',
     description: 'Intelligent analysis of architectural patterns and design-level improvements.',
     icon: '🏗️',
-    gradient: 'from-purple-500/20 to-blue-500/20',
+    gradient: 'from-purple-500/20 to-violet-500/20',
   },
   {
     title: 'Merge Confidence Score',
     description: 'AI-powered scoring system to determine PR readiness and quality metrics.',
     icon: '📊',
-    gradient: 'from-cyan-500/20 to-blue-500/20',
+    gradient: 'from-orange-500/20 to-amber-500/20',
   },
   {
     title: 'AI Patch Generation',

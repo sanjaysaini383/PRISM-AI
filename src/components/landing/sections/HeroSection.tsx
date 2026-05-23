@@ -1,11 +1,35 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+
+const analysisSteps = [
+  { label: 'Parsing pull request...', delay: 0 },
+  { label: 'Analyzing architecture...', delay: 500 },
+  { label: 'Checking vulnerabilities...', delay: 1000 },
+  { label: 'Detecting anti-patterns...', delay: 1500 },
+  { label: 'Generating fixes...', delay: 2000 },
+  { label: 'Computing merge confidence...', delay: 2500 },
+]
 
 export function HeroSection() {
+  const [activeStep, setActiveStep] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % analysisSteps.length)
+    }, 2000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 md:px-8 py-20">
-      <div className="max-w-6xl mx-auto text-center">
+    <section className="min-h-screen flex items-center justify-center px-4 md:px-8 py-20 relative overflow-hidden">
+      {/* Background gradients */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+
+      <div className="max-w-6xl mx-auto text-center relative z-10">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -14,7 +38,7 @@ export function HeroSection() {
           className="mb-6 inline-block"
         >
           <div className="glass px-4 py-2 rounded-full">
-            <span className="text-sm font-semibold text-prism-accent">✨ AI-Powered Engineering Intelligence</span>
+            <span className="text-sm font-semibold text-purple-400">⚡ Real-Time AI Engineering Review</span>
           </div>
         </motion.div>
 
@@ -25,9 +49,9 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
         >
-          <span className="gradient-text">PRISM AI</span>
+          <span className="gradient-text">Ship Cleaner Code</span>
           <br />
-          <span className="text-white">Engineering Intelligence</span>
+          <span className="text-white">With AI-Powered PR Intelligence</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -35,9 +59,9 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto"
+          className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed"
         >
-          AI-Powered Engineering Intelligence Platform. Review, analyze, and improve code with advanced AI agents.
+          PRISM AI reviews pull requests, detects vulnerabilities, analyzes architecture risks, and generates fixes in real time. Get actionable insights instantly.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -45,60 +69,98 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex flex-col md:flex-row gap-4 justify-center mb-12"
+          className="flex flex-col md:flex-row gap-4 justify-center mb-16"
         >
-          <button className="glass px-8 py-4 rounded-lg bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 font-semibold text-lg">
-            Start Free Trial
-          </button>
-          <button className="glass px-8 py-4 rounded-lg hover:bg-white/10 font-semibold text-lg">
+          <Link href="/dashboard">
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 rounded-lg bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold text-lg transition-all duration-300 shadow-lg shadow-purple-500/25"
+            >
+              Open Dashboard
+            </motion.button>
+          </Link>
+          <motion.button
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="glass px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300"
+          >
             Watch Demo
-          </button>
+          </motion.button>
         </motion.div>
 
-        {/* Terminal Animation */}
+        {/* Live Analysis Demo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="glass rounded-xl p-6 max-w-2xl mx-auto mb-8"
+          className="glass rounded-lg p-8 max-w-2xl mx-auto mb-12"
         >
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-3 h-3 bg-red-500 rounded-full" />
-            <div className="w-3 h-3 bg-yellow-500 rounded-full" />
-            <div className="w-3 h-3 bg-green-500 rounded-full" />
-          </div>
-          
-          <div className="space-y-2 text-left font-mono text-sm">
-            <div className="text-green-400">$ prism review PR-1234</div>
-            <div className="text-gray-400">Analyzing pull request...</div>
-            <div className="text-gray-400 flex items-center gap-2">
-              <span className="animate-pulse">▋</span>
-              <span>Scanning security vulnerabilities...</span>
+          <div className="flex items-center gap-3 mb-6 pb-6 border-b border-white/10">
+            <div className="text-sm font-semibold text-purple-400">AI ANALYSIS IN ACTION</div>
+            <div className="ml-auto">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             </div>
-            <div className="text-gray-400 mt-2">✓ 15 issues detected</div>
-            <div className="text-gray-400">✓ Architecture risks analyzed</div>
-            <div className="text-prism-accent">✓ Merge confidence: 87%</div>
+          </div>
+
+          <div className="space-y-3 font-mono text-sm text-left">
+            {analysisSteps.map((step, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0.5 }}
+                animate={{ opacity: activeStep >= idx ? 1 : 0.5 }}
+                className={`flex items-center gap-3 ${activeStep === idx ? 'text-purple-400' : 'text-gray-500'}`}
+              >
+                <span className="w-1.5 h-1.5 bg-current rounded-full" />
+                {step.label}
+                {activeStep === idx && (
+                  <motion.span
+                    animate={{ opacity: [1, 0] }}
+                    transition={{ duration: 0.5, repeat: Infinity }}
+                  >
+                    |
+                  </motion.span>
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-6 pt-6 border-t border-white/10">
+            <div className="grid grid-cols-3 gap-4 text-xs">
+              <div>
+                <div className="text-gray-400 mb-1">Issues Found</div>
+                <div className="text-purple-400 font-semibold text-lg">15</div>
+              </div>
+              <div>
+                <div className="text-gray-400 mb-1">Security</div>
+                <div className="text-green-400 font-semibold text-lg">✓ Safe</div>
+              </div>
+              <div>
+                <div className="text-gray-400 mb-1">Merge Ready</div>
+                <div className="text-purple-400 font-semibold text-lg">87%</div>
+              </div>
+            </div>
           </div>
         </motion.div>
 
-        {/* Metrics Row */}
+        {/* Key Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="grid grid-cols-3 gap-4 max-w-lg mx-auto"
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
-          <div className="glass px-4 py-3 rounded-lg">
-            <div className="text-2xl font-bold text-prism-accent">70%</div>
-            <div className="text-xs text-gray-400">Faster Reviews</div>
+          <div className="glass p-6 rounded-lg">
+            <div className="text-3xl font-bold text-purple-400 mb-2">70%</div>
+            <div className="text-gray-400">Faster Code Reviews</div>
           </div>
-          <div className="glass px-4 py-3 rounded-lg">
-            <div className="text-2xl font-bold text-prism-accent">40%</div>
-            <div className="text-xs text-gray-400">Fewer Bugs</div>
+          <div className="glass p-6 rounded-lg">
+            <div className="text-3xl font-bold text-purple-400 mb-2">40%</div>
+            <div className="text-gray-400">Fewer Production Bugs</div>
           </div>
-          <div className="glass px-4 py-3 rounded-lg">
-            <div className="text-2xl font-bold text-prism-accent">3x</div>
-            <div className="text-xs text-gray-400">Productivity</div>
+          <div className="glass p-6 rounded-lg">
+            <div className="text-3xl font-bold text-purple-400 mb-2">3x</div>
+            <div className="text-gray-400">Better Code Quality</div>
           </div>
         </motion.div>
       </div>

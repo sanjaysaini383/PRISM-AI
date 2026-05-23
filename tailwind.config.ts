@@ -11,13 +11,13 @@ const config: Config = {
     extend: {
       colors: {
         'prism': {
-          'bg': '#050816',
-          'bg-secondary': '#0f1728',
-          'card': 'rgba(255,255,255,0.05)',
-          'accent': '#00d9ff',
-          'accent-dark': '#0099cc',
+          'bg': '#0a0e27',
+          'bg-secondary': '#12172e',
+          'card': 'rgba(255,255,255,0.04)',
+          'accent': '#a855f7',
+          'accent-light': '#d946ef',
           'success': '#10b981',
-          'warning': '#f59e0b',
+          'warning': '#f97316',
           'danger': '#ef4444',
         }
       },
