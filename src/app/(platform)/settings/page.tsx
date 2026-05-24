@@ -67,7 +67,7 @@ export default function SettingsPage() {
         </p>
         <p className="text-sm text-gray-500">
           For CI-based reviews, configure the GitHub Action in{' '}
-          <code className="text-purple-300">.github/workflows/codefox-review.yml</code>.
+          <code className="text-purple-300">.github/workflows/codefox-review.yml</code> (PRISM AI Action).
         </p>
       </section>
     </div>

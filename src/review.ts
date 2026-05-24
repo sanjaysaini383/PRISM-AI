@@ -430,7 +430,7 @@ ${filename}: ${summary}
     if (releaseNotesResponse === '') {
       info('release notes: nothing obtained from openai')
     } else {
-      let message = '### Summary by CodeFox\n\n'
+      let message = '### Summary by PRISM AI\n\n'
       message += releaseNotesResponse
       try {
         await commenter.updateDescription(
@@ -461,11 +461,11 @@ ${SHORT_SUMMARY_END_TAG}
 ---
 
 <details>
-<summary>Uplevel your code reviews with CodeFox Pro</summary>
+<summary>Uplevel your code reviews with PRISM AI Pro</summary>
 
-### CodeFox Pro
+### PRISM AI Pro
 
-If you like this project, please support us by purchasing the [Pro version](https://codefox.ai). The Pro version has advanced context, superior noise reduction and several proprietary improvements compared to the open source version. Moreover, CodeFox Pro is free for open source projects.
+PRISM AI Pro offers advanced context, superior noise reduction, and proprietary improvements compared to the open source version. Pro is free for qualifying open source projects.
 
 </details>
 `
@@ -723,7 +723,7 @@ ${
 <details>
 <summary>Tips</summary>
 
-### Chat with 🦊 CodingFox Bot (\`@codefox\`)
+### Chat with PRISM AI Bot (\`@codefox\`)
 - Reply on review comments left by this bot to ask follow-up questions. A review comment is a comment on a diff or a file.
 - Invite the bot into a review comment chain by tagging \`@codefox\` in a reply.
 

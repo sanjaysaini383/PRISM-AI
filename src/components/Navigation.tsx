@@ -46,7 +46,7 @@ export function Navigation({ isScrolled = false }: NavigationProps) {
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold gradient-text cursor-pointer hover:opacity-80 transition">
-          CodingFox
+          PRISM AI
         </Link>
 
         {/* Desktop Menu */}

@@ -1,6 +1,6 @@
-# CodingFox — AI GitHub PR Review Platform
+# PRISM AI — AI GitHub PR Review Platform
 
-CodingFox is a Next.js application that connects to GitHub via OAuth, fetches real pull requests and diffs, and runs a multi-phase OpenAI code review with **Server-Sent Events** streaming.
+PRISM AI is a Next.js application that connects to GitHub via OAuth, fetches real pull requests and diffs, and runs a multi-phase OpenAI code review with **Server-Sent Events** streaming.
 
 ## Architecture
 
@@ -72,7 +72,7 @@ Open [http://localhost:3000](http://localhost:3000) → **Sign in with GitHub** 
 
 ### 4. GitHub Action (optional)
 
-The repo includes the original CodeFox review action (`src/review.ts`, `action.yml`). Configure `.github/workflows/codefox-review.yml` with `OPENAI_API_KEY` in repository secrets for CI-based reviews on PR events.
+The repo includes the PRISM AI review GitHub Action (`src/review.ts`, `action.yml`). Configure `.github/workflows/codefox-review.yml` with `OPENAI_API_KEY` in repository secrets for CI-based reviews on PR events.
 
 ## API reference
 

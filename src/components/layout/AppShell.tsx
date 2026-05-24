@@ -28,8 +28,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       >
         <div className="p-5 border-b border-white/10">
           <Link href="/dashboard" className="block">
-            <span className="text-xl font-bold gradient-text">CodingFox</span>
-            <p className="text-xs text-gray-500 mt-0.5">AI PR Review</p>
+            <span className="text-xl font-bold gradient-text">PRISM AI</span>
+            <p className="text-xs text-gray-500 mt-0.5">Engineering Intelligence</p>
           </Link>
         </div>
 

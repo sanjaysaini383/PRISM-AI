@@ -9,7 +9,7 @@ export function LandingPage() {
       <Navigation />
 
       <main className="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-24">
-        <p className="text-sm font-mono text-purple-400 mb-4">AI PR Review Platform</p>
+        <p className="text-sm font-mono text-purple-400 mb-4">PRISM AI · Engineering Intelligence</p>
         <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
           Automated code review for{' '}
           <span className="gradient-text">GitHub pull requests</span>

@@ -7,39 +7,39 @@ import {octokit} from './octokit'
 const context = github_context
 const repo = context.repo
 
-export const COMMENT_GREETING = `${getInput('bot_icon')}   CodeFox`
+export const COMMENT_GREETING = `${getInput('bot_icon')}   PRISM AI`
 
 export const COMMENT_TAG =
-  '<!-- This is an auto-generated comment by OSS CodeFox -->'
+  '<!-- This is an auto-generated comment by OSS PRISM AI -->'
 
 export const COMMENT_REPLY_TAG =
-  '<!-- This is an auto-generated reply by OSS CodeFox -->'
+  '<!-- This is an auto-generated reply by OSS PRISM AI -->'
 
 export const SUMMARIZE_TAG =
-  '<!-- This is an auto-generated comment: summarize by OSS CodeFox -->'
+  '<!-- This is an auto-generated comment: summarize by OSS PRISM AI -->'
 
 export const IN_PROGRESS_START_TAG =
-  '<!-- This is an auto-generated comment: summarize review in progress by OSS CodeFox -->'
+  '<!-- This is an auto-generated comment: summarize review in progress by OSS PRISM AI -->'
 
 export const IN_PROGRESS_END_TAG =
-  '<!-- end of auto-generated comment: summarize review in progress by OSS CodeFox -->'
+  '<!-- end of auto-generated comment: summarize review in progress by OSS PRISM AI -->'
 
 export const DESCRIPTION_START_TAG =
-  '<!-- This is an auto-generated comment: release notes by OSS CodeFox -->'
+  '<!-- This is an auto-generated comment: release notes by OSS PRISM AI -->'
 export const DESCRIPTION_END_TAG =
-  '<!-- end of auto-generated comment: release notes by OSS CodeFox -->'
+  '<!-- end of auto-generated comment: release notes by OSS PRISM AI -->'
 
-export const RAW_SUMMARY_START_TAG = `<!-- This is an auto-generated comment: raw summary by OSS CodeFox -->
+export const RAW_SUMMARY_START_TAG = `<!-- This is an auto-generated comment: raw summary by OSS PRISM AI -->
 <!--
 `
 export const RAW_SUMMARY_END_TAG = `-->
-<!-- end of auto-generated comment: raw summary by OSS CodeFox -->`
+<!-- end of auto-generated comment: raw summary by OSS PRISM AI -->`
 
-export const SHORT_SUMMARY_START_TAG = `<!-- This is an auto-generated comment: short summary by OSS CodeFox -->
+export const SHORT_SUMMARY_START_TAG = `<!-- This is an auto-generated comment: short summary by OSS PRISM AI -->
 <!--
 `
 export const SHORT_SUMMARY_END_TAG = `-->
-<!-- end of auto-generated comment: short summary by OSS CodeFox -->`
+<!-- end of auto-generated comment: short summary by OSS PRISM AI -->`
 
 export const COMMIT_ID_START_TAG = '<!-- commit_ids_reviewed_start -->'
 export const COMMIT_ID_END_TAG = '<!-- commit_ids_reviewed_end -->'

@@ -3,7 +3,7 @@ import './globals.css'
 import { QueryProvider } from '@/components/providers/QueryProvider'
 
 export const metadata: Metadata = {
-  title: 'CodingFox — AI GitHub PR Review',
+  title: 'PRISM AI — AI GitHub PR Review',
   description:
     'AI-powered pull request reviews with security, performance, and architecture analysis.',
 }
