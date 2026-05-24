@@ -1,8 +1,15 @@
 # PRISM AI - Environment Variables
 
+## Dev only — if npm/GitHub fail with UNABLE_TO_VERIFY_LEAF_SIGNATURE on Windows:
+# NODE_TLS_REJECT_UNAUTHORIZED=0
+
 ## Public Variables (exposed to browser)
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_API_URL=http://localhost:3000/api
 NEXT_PUBLIC_GITHUB_CLIENT_ID=your_github_client_id
+
+## GitHub OAuth (register callback: http://localhost:3000/api/auth/github/callback)
+GITHUB_CLIENT_SECRET=your_github_client_secret
 
 ## GitHub Integration
 GITHUB_APP_ID=your_github_app_id

@@ -28,8 +28,8 @@ export function Sidebar({ open, activeTab, setActiveTab }: SidebarProps) {
       <div className="w-280 h-full p-6 flex flex-col">
         {/* Logo */}
         <div className="mb-12">
-          <h1 className="text-2xl font-bold gradient-text">PRISM</h1>
-          <p className="text-xs text-gray-400 mt-1">Engineering Platform</p>
+          <h1 className="text-2xl font-bold gradient-text">PRISM AI</h1>
+          <p className="text-xs text-gray-400 mt-1">Engineering Intelligence</p>
         </div>
 
         {/* Navigation */}
