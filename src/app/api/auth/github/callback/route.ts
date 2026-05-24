@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    const redirectUri = getGitHubRedirectUri()
+    const redirectUri = getGitHubRedirectUri(request)
 
     const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
       method: 'POST',
