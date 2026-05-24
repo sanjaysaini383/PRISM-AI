@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { getGitHubRedirectUri } from '@/lib/auth-url'
 
 const GITHUB_CLIENT_ID = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
 
@@ -10,8 +11,8 @@ export function GET() {
     )
   }
 
-  const redirectUri = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api'}/auth/github/callback`
-  
+  const redirectUri = getGitHubRedirectUri()
+
   const params = new URLSearchParams({
     client_id: GITHUB_CLIENT_ID,
     redirect_uri: redirectUri,

@@ -4,7 +4,7 @@
   "private": true,
   "description": "PRISM AI - AI-Powered Engineering Intelligence Platform",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node scripts/dev.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -36,6 +36,7 @@
     "framer-motion": "^10.16.0",
     "jsonwebtoken": "^9.0.3",
     "next": "^14.0.0",
+    "openai": "^4.104.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "zustand": "^4.4.0"

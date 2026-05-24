@@ -1,33 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import { QueryProvider } from '@/components/providers/QueryProvider'
 
 export const metadata: Metadata = {
-  title: 'PRISM AI - AI-Powered Engineering Intelligence Platform',
-  description: 'Revolutionize your development workflow with AI-powered code reviews, security analysis, and intelligent insights.',
-  openGraph: {
-    title: 'PRISM AI',
-    description: 'AI-Powered Engineering Intelligence Platform',
-    url: 'https://prism-ai.dev',
-    siteName: 'PRISM AI',
-    images: [
-      {
-        url: 'https://prism-ai.dev/og-image.png',
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'PRISM AI',
-    description: 'AI-Powered Engineering Intelligence Platform',
-    images: ['https://prism-ai.dev/og-image.png'],
-  },
+  title: 'CodingFox — AI GitHub PR Review',
+  description:
+    'AI-powered pull request reviews with security, performance, and architecture analysis.',
 }
 
 export default function RootLayout({
@@ -37,8 +15,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-prism-bg text-white`}>
-        {children}
+      <body className="font-sans bg-prism-bg text-white antialiased">
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   )

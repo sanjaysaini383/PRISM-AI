@@ -46,15 +46,13 @@ export function Navigation({ isScrolled = false }: NavigationProps) {
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold gradient-text cursor-pointer hover:opacity-80 transition">
-          PRISM AI
+          CodingFox
         </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
-          <a href="#features" className="text-gray-300 hover:text-white transition">Features</a>
-          <a href="/dashboard" className="text-gray-300 hover:text-white transition">Dashboard</a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition">GitHub</a>
-          <a href="#docs" className="text-gray-300 hover:text-white transition">Docs</a>
+          <Link href="/repositories" className="text-gray-300 hover:text-white transition">Repositories</Link>
+          <Link href="/dashboard" className="text-gray-300 hover:text-white transition">Dashboard</Link>
           
           {user ? (
             <div className="flex items-center gap-4">
@@ -103,10 +101,8 @@ export function Navigation({ isScrolled = false }: NavigationProps) {
           className="md:hidden glass border-t border-white/10 p-4"
         >
           <div className="space-y-4">
-            <a href="#features" className="block text-gray-300 hover:text-white transition">Features</a>
-            <a href="/dashboard" className="block text-gray-300 hover:text-white transition">Dashboard</a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="block text-gray-300 hover:text-white transition">GitHub</a>
-            <a href="#docs" className="block text-gray-300 hover:text-white transition">Docs</a>
+            <Link href="/repositories" className="block text-gray-300 hover:text-white transition">Repositories</Link>
+            <Link href="/dashboard" className="block text-gray-300 hover:text-white transition">Dashboard</Link>
             
             {user ? (
               <>
