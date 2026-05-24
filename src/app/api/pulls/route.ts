@@ -1,6 +1,75 @@
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
+import { getRepositoryPullRequests } from '@/lib/github-client'
+import { cookies } from 'next/headers'
 
-// Mock PR data - in production this would come from GitHub API or database
+export async function GET(request: NextRequest) {
+  try {
+    const cookieStore = await cookies()
+    const githubToken = cookieStore.get('github_token')?.value
+
+    // If no token, return mock data (for development/testing)
+    if (!githubToken) {
+      return NextResponse.json(mockPullRequests.slice(0, 10), {
+        headers: {
+          'Cache-Control': 'no-store, must-revalidate',
+        },
+      })
+    }
+
+    const { searchParams } = new URL(request.url)
+    const owner = searchParams.get('owner') || 'sanjaysaini383'
+    const repo = searchParams.get('repo') || 'PRISM-AI'
+    const state = searchParams.get('state') || 'open'
+    const limit = parseInt(searchParams.get('limit') || '20', 10)
+
+    try {
+      const prs = await getRepositoryPullRequests(
+        githubToken,
+        owner,
+        repo,
+        state as 'open' | 'closed' | 'all'
+      )
+
+      // Transform GitHub API response to our format
+      const formatted = prs.slice(0, limit).map((pr: any) => ({
+        id: `${pr.id}`,
+        number: pr.number,
+        title: pr.title,
+        author: pr.user.login,
+        repository: repo,
+        status: pr.state === 'open' ? 'open' : 'merged',
+        createdAt: pr.created_at,
+        updatedAt: pr.updated_at,
+        additions: pr.additions || 0,
+        deletions: pr.deletions || 0,
+        filesChanged: pr.changed_files || 0,
+      }))
+
+      return NextResponse.json(formatted, {
+        headers: {
+          'Cache-Control': 'no-store, must-revalidate',
+        },
+      })
+    } catch (githubError: any) {
+      // If GitHub API fails, fall back to mock data
+      console.error('GitHub API error:', githubError.message)
+      return NextResponse.json(mockPullRequests.slice(0, 10), {
+        headers: {
+          'Cache-Control': 'no-store, must-revalidate',
+          'X-Fallback': 'true',
+        },
+      })
+    }
+  } catch (error) {
+    console.error('Error fetching pull requests:', error)
+    return NextResponse.json(
+      { error: 'Failed to fetch pull requests' },
+      { status: 500 }
+    )
+  }
+}
+
+// Mock data fallback for when not authenticated or API fails
 const mockPullRequests = [
   {
     id: '1',
@@ -9,7 +78,7 @@ const mockPullRequests = [
     author: 'alex-dev',
     repository: 'codingfox',
     status: 'merged' as const,
-    createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2 hours ago
+    createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
     updatedAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
     additions: 342,
     deletions: 45,
@@ -22,7 +91,7 @@ const mockPullRequests = [
     author: 'sarah-backend',
     repository: 'codingfox',
     status: 'open' as const,
-    createdAt: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(), // 4 hours ago
+    createdAt: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
     updatedAt: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
     additions: 521,
     deletions: 187,
@@ -35,7 +104,7 @@ const mockPullRequests = [
     author: 'alex-dev',
     repository: 'codingfox',
     status: 'merged' as const,
-    createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(), // 1 day ago
+    createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
     updatedAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
     additions: 78,
     deletions: 34,
@@ -48,7 +117,7 @@ const mockPullRequests = [
     author: 'mike-dev',
     repository: 'codingfox',
     status: 'open' as const,
-    createdAt: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString(), // 2 days ago
+    createdAt: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString(),
     updatedAt: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString(),
     additions: 234,
     deletions: 89,
@@ -61,7 +130,7 @@ const mockPullRequests = [
     author: 'bot-auto',
     repository: 'codingfox',
     status: 'merged' as const,
-    createdAt: new Date(Date.now() - 72 * 60 * 60 * 1000).toISOString(), // 3 days ago
+    createdAt: new Date(Date.now() - 72 * 60 * 60 * 1000).toISOString(),
     updatedAt: new Date(Date.now() - 72 * 60 * 60 * 1000).toISOString(),
     additions: 156,
     deletions: 123,
@@ -74,7 +143,7 @@ const mockPullRequests = [
     author: 'sarah-backend',
     repository: 'codingfox',
     status: 'open' as const,
-    createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(), // 5 days ago
+    createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
     updatedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
     additions: 89,
     deletions: 12,
@@ -87,7 +156,7 @@ const mockPullRequests = [
     author: 'alex-dev',
     repository: 'codingfox',
     status: 'merged' as const,
-    createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days ago
+    createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
     updatedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
     additions: 445,
     deletions: 198,
@@ -100,7 +169,7 @@ const mockPullRequests = [
     author: 'devops-team',
     repository: 'codingfox',
     status: 'merged' as const,
-    createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(), // 10 days ago
+    createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
     updatedAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
     additions: 67,
     deletions: 45,
@@ -113,7 +182,7 @@ const mockPullRequests = [
     author: 'mike-dev',
     repository: 'codingfox',
     status: 'merged' as const,
-    createdAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString(), // 12 days ago
+    createdAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString(),
     updatedAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString(),
     additions: 234,
     deletions: 67,
@@ -126,33 +195,10 @@ const mockPullRequests = [
     author: 'alex-dev',
     repository: 'codingfox',
     status: 'merged' as const,
-    createdAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(), // 14 days ago
+    createdAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
     updatedAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
     additions: 178,
     deletions: 89,
     filesChanged: 6,
   },
 ]
-
-export async function GET(request: Request) {
-  try {
-    const { searchParams } = new URL(request.url)
-    const limit = parseInt(searchParams.get('limit') || '10', 10)
-    
-    // Return limited number of PRs, most recent first
-    const prs = mockPullRequests.slice(0, Math.min(limit, mockPullRequests.length))
-    
-    return NextResponse.json(prs, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-store, must-revalidate',
-      },
-    })
-  } catch (error) {
-    console.error('Error fetching pull requests:', error)
-    return NextResponse.json(
-      { error: 'Failed to fetch pull requests' },
-      { status: 500 }
-    )
-  }
-}
