@@ -42,6 +42,18 @@
     "dist",
     "lib",
     "node_modules",
-    "**/*.test.ts"
+    "**/*.test.ts",
+    "src/bot.ts",
+    "src/commenter.ts",
+    "src/inputs.ts",
+    "src/main.ts",
+    "src/octokit.ts",
+    "src/options.ts",
+    "src/review-comment.ts",
+    "src/review.ts",
+    "src/tokenizer.ts",
+    "src/fetch-polyfill.js",
+    "src/limits.ts",
+    "src/prompts.ts"
   ]
 }

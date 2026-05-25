@@ -2,16 +2,16 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { fetchPullRequests, type PullRequest } from '@/lib/api-client'
+import { fetchPullRequests, type PullRequestSummary } from '@/lib/api-client'
 
 export function OverviewTab() {
-  const [pullRequests, setPullRequests] = useState<PullRequest[]>([])
+  const [pullRequests, setPullRequests] = useState<PullRequestSummary[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const prs = await fetchPullRequests(10)
+        const prs = await fetchPullRequests('owner', 'repo', 'all', 10)
         setPullRequests(prs)
       } catch (error) {
         console.error('Failed to load PRs:', error)

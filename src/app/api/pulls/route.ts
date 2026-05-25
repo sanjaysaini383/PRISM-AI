@@ -32,9 +32,9 @@ export async function GET(request: NextRequest) {
       status: pr.merged_at ? 'merged' : pr.state === 'open' ? 'open' : 'closed',
       createdAt: pr.created_at,
       updatedAt: pr.updated_at,
-      additions: pr.additions ?? 0,
-      deletions: pr.deletions ?? 0,
-      filesChanged: pr.changed_files ?? 0,
+      additions: (pr as any).additions ?? 0,
+      deletions: (pr as any).deletions ?? 0,
+      filesChanged: (pr as any).changed_files ?? 0,
       url: pr.html_url,
     }))
 

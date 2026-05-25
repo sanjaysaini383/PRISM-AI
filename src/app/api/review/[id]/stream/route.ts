@@ -102,7 +102,6 @@ export async function GET(
           controller.close()
         })
 
-        // Heartbeat
         const heartbeat = setInterval(() => {
           controller.enqueue(encoder.encode(': heartbeat\n\n'))
         }, 15000)

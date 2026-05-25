@@ -1,21 +1,11 @@
 import { Octokit } from '@octokit/rest'
 
-/**
- * Create an Octokit instance for authenticated API calls
- * Uses user's GitHub token from OAuth flow
- */
 export function createOctokitClient(token: string) {
-  return new Octokit({
-    auth: token,
-  })
+  return new Octokit({ auth: token })
 }
 
-/**
- * Get user's repositories from GitHub
- */
 export async function getUserRepositories(token: string) {
   const octokit = createOctokitClient(token)
-  
   try {
     const response = await octokit.repos.listForAuthenticatedUser({
       per_page: 100,
@@ -28,9 +18,6 @@ export async function getUserRepositories(token: string) {
   }
 }
 
-/**
- * Get pull requests for a repository
- */
 export async function getRepositoryPullRequests(
   token: string,
   owner: string,
@@ -38,7 +25,6 @@ export async function getRepositoryPullRequests(
   state: 'open' | 'closed' | 'all' = 'open'
 ) {
   const octokit = createOctokitClient(token)
-  
   try {
     const response = await octokit.pulls.list({
       owner,
@@ -54,9 +40,6 @@ export async function getRepositoryPullRequests(
   }
 }
 
-/**
- * Get specific pull request with detailed information
- */
 export async function getPullRequest(
   token: string,
   owner: string,
@@ -64,20 +47,17 @@ export async function getPullRequest(
   prNumber: number
 ) {
   const octokit = createOctokitClient(token)
-  
   try {
     const prResponse = await octokit.pulls.get({
       owner,
       repo,
       pull_number: prNumber,
     })
-    
     const filesResponse = await octokit.pulls.listFiles({
       owner,
       repo,
       pull_number: prNumber,
     })
-    
     return {
       pr: prResponse.data,
       files: filesResponse.data,
@@ -88,12 +68,8 @@ export async function getPullRequest(
   }
 }
 
-/**
- * Get the authenticated user's info
- */
 export async function getAuthenticatedUser(token: string) {
   const octokit = createOctokitClient(token)
-  
   try {
     const response = await octokit.users.getAuthenticated()
     return response.data
